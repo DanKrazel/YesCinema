@@ -11,10 +11,9 @@ namespace ProjectCinema.Controllers
 {
     public class HomeController : Controller
     {
-        private DB_Entities db = new DB_Entities();
         public ActionResult Index()
         {
-            return View("Index","_Layout");
+            return View();
         }
 
         public ActionResult newIndex()
@@ -22,10 +21,6 @@ namespace ProjectCinema.Controllers
             return View();
         }
 
-        public ActionResult Test()
-        {
-            return View();
-        }
 
         public ActionResult About()
         {

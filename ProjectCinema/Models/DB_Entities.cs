@@ -18,7 +18,6 @@ namespace ProjectCinema.Models
 
             base.OnModelCreating(modelBuilder);
 
-
         }
     }
 }
