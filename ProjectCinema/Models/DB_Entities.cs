@@ -10,12 +10,14 @@ namespace ProjectCinema.Models
     {
         public DB_Entities() : base("Movie") { }
         public DbSet <REGISTER> Users { get; set; }
+        public DbSet<Movie> MOVIES { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //Database.SetInitializer<demoEntities>(null);
             modelBuilder.Entity<REGISTER>().ToTable("REGISTER");
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
+            modelBuilder.Entity<Movie>().ToTable("MOVIES");
+        //    modelBuilder.Entity<Movie>().HasKey(e => e.ID);
             base.OnModelCreating(modelBuilder);
 
         }
