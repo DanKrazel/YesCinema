@@ -8,7 +8,7 @@ namespace ProjectCinema.Models
 {
     public class DB_Entities : DbContext
     {
-        public DB_Entities() : base("DataRegister") { }
+        public DB_Entities() : base("Movie") { }
         public DbSet <REGISTER> Users { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
