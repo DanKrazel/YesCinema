@@ -21,7 +21,7 @@ namespace ProjectCinema.Controllers
         }
 
         [HttpPost]
-        public ActionResult Movie(Movie MyMovie)
+        public ActionResult Movie(MOVIE MyMovie)
         {
 
             if (ModelState.IsValid)

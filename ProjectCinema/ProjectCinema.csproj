@@ -149,29 +149,17 @@
       <DependentUpon>Movie.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Movie.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MovieTest.tt</DependentUpon>
+      <DependentUpon>Movie.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Movie.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Movie.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\MovieTest.Context.cs">
+    <Compile Include="Models\Movie1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MovieTest.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MovieTest.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MovieTest.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MovieTest.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MovieTest.edmx</DependentUpon>
+      <DependentUpon>Movie.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\REGISTER.cs">
       <DependentUpon>Registration.tt</DependentUpon>
@@ -222,23 +210,13 @@
     <Content Include="lib\twitter-bootstrap\js\bootstrap.min.js" />
     <Content Include="Models\Movie.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Movie.Context.cs</LastGenOutput>
       <DependentUpon>Movie.edmx</DependentUpon>
+      <LastGenOutput>Movie.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Movie.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Movie.edmx</DependentUpon>
-      <LastGenOutput>Movie.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\MovieTest.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MovieTest.edmx</DependentUpon>
-      <LastGenOutput>MovieTest.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\MovieTest.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MovieTest.edmx</DependentUpon>
-      <LastGenOutput>MovieTest.cs</LastGenOutput>
+      <LastGenOutput>Movie1.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Registration.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -389,13 +367,6 @@
     </EntityDeploy>
     <Content Include="Models\Movie.edmx.diagram">
       <DependentUpon>Movie.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\MovieTest.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MovieTest.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\MovieTest.edmx.diagram">
-      <DependentUpon>MovieTest.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />

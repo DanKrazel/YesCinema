@@ -13,10 +13,10 @@ namespace ProjectCinema.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Movie : DbContext
+    public partial class Entities : DbContext
     {
-        public Movie()
-            : base("name=Movie")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -25,6 +25,6 @@ namespace ProjectCinema.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<MOVIE> MOVIE { get; set; }
+        public virtual DbSet<MOVIE> MOVIEs { get; set; }
     }
 }

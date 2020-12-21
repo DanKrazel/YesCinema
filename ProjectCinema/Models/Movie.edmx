@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ManageMovie.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model1.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="MOVIE">
           <Key>
             <PropertyRef Name="ID" />
@@ -14,14 +14,14 @@
           <Property Name="PRICE" Type="number" Precision="10" Scale="0" />
           <Property Name="SALLE" Type="varchar2" MaxLength="1" />
         </EntityType>
-        <EntityContainer Name="ManageMovieStoreContainer">
+        <EntityContainer Name="Model1StoreContainer">
           <EntitySet Name="MOVIE" EntityType="Self.MOVIE" Schema="DANKR" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ManageMovie" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="MOVIE">
           <Key>
             <PropertyRef Name="ID" />
@@ -31,17 +31,17 @@
           <Property Name="PRICE" Type="Int32" />
           <Property Name="SALLE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="Movie" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="MOVIE" EntityType="Self.MOVIE" />
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MOVIEs" EntityType="Self.MOVIE" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ManageMovieStoreContainer" CdmEntityContainer="Movie">
-          <EntitySetMapping Name="MOVIE">
-            <EntityTypeMapping TypeName="ManageMovie.MOVIE">
+        <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="MOVIEs">
+            <EntityTypeMapping TypeName="Model1.MOVIE">
               <MappingFragment StoreEntitySet="MOVIE">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SHOWTIME" ColumnName="SHOWTIME" />
@@ -64,7 +64,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
