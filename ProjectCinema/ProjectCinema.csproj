@@ -180,7 +180,6 @@
       <DependentUpon>Registration.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShoppingCartItem.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
