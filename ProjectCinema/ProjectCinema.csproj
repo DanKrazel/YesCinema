@@ -135,7 +135,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +142,21 @@
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\DB_Entities.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Movie.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Movie.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Movie.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Movie.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Movie.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Movie.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\REGISTER.cs">
       <DependentUpon>Registration.tt</DependentUpon>
     </Compile>
@@ -190,6 +204,16 @@
     <Content Include="lib\twitter-bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="lib\twitter-bootstrap\js\bootstrap.js" />
     <Content Include="lib\twitter-bootstrap\js\bootstrap.min.js" />
+    <Content Include="Models\Movie.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Movie.Context.cs</LastGenOutput>
+      <DependentUpon>Movie.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Movie.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Movie.edmx</DependentUpon>
+      <LastGenOutput>Movie.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Registration.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Registration.Context.cs</LastGenOutput>
@@ -333,6 +357,13 @@
     <Content Include="lib\twitter-bootstrap\scss\vendor\_rfs.scss" />
     <Content Include="lib\jquery\jquery.min.map" />
     <Content Include="lib\jquery\jquery.slim.min.map" />
+    <EntityDeploy Include="Models\Movie.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Movie.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Movie.edmx.diagram">
+      <DependentUpon>Movie.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
