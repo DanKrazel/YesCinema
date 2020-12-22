@@ -23,7 +23,13 @@ namespace ProjectCinema.Models
         public string price { get; set; }
 
         [Required]
+        public string name { get; set; }
+
+        [Required]
         public string SALLE { get; set; }
+
+        [Required]
+        public string moviePicture { get; set; }
 
 
     }

@@ -1,0 +1,36 @@
+﻿
+@model IEnumerable<ProjectCinema.Models.ImageModel>
+
+@{
+    ViewBag.Title = "ImagesView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ImagesView</h2>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Image</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.ID</td>
+    <td>@item.Name</td>
+    <td><img src="@Url.Content(@item.Image)" height="100" witdth="100" /></td>
+
+</tr>
+    }
+
+
+</table>
+
+<div>
+    <h4>ImageModel</h4>
+    <hr />
+</div>
+<p>
+
+</p>

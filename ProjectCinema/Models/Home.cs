@@ -8,5 +8,6 @@ namespace ProjectCinema.Models
     public class Home
     {
 
+
     }
 }
