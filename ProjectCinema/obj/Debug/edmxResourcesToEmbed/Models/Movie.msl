@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="ManageMovieStoreContainer" CdmEntityContainer="Entities">
     <EntitySetMapping Name="MOVIEs">
-      <EntityTypeMapping TypeName="Model1.MOVIE">
+      <EntityTypeMapping TypeName="ManageMovie.MOVIE">
         <MappingFragment StoreEntitySet="MOVIE">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="SHOWTIME" ColumnName="SHOWTIME" />

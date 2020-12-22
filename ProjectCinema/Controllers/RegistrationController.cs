@@ -6,13 +6,13 @@ using System.Web;
 using System.Web.Mvc;
 using ProjectCinema.Models;
 using System.Security.Cryptography;
+using ProjectCinema.Dal;
 
 
 namespace ProjectCinema.Controllers
 {
     public class RegistrationController : Controller
     {
-        private DB_Entities db = new DB_Entities();
         public ActionResult Login()
         {
             return View();
@@ -24,7 +24,8 @@ namespace ProjectCinema.Controllers
         {
             if (ModelState.IsValid)
             {
-                var data = db.Users.Where(s => s.USERNAME.Equals(username) && s.PASSWORD.Equals(password)).ToList();
+                UserDal dal = new UserDal();
+                var data = dal.Users.Where(s => s.USERNAME.Equals(username) && s.PASSWORD.Equals(password)).ToList();
                 if (data.Count() > 0)
                 {
                     //add session
@@ -48,25 +49,18 @@ namespace ProjectCinema.Controllers
 
 
         [HttpPost]
-        public ActionResult Register(REGISTER obj)
+        public ActionResult Register(Register obj)
 
         {
             if (ModelState.IsValid)
             {
-                var check = db.Users.FirstOrDefault(s => s.MAIL == obj.MAIL);
-                if (check == null)
-                {
-                    db.Users.Add(obj);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ViewBag.error = "Email already exists";
-                    return RedirectToAction("Register");
-                }
+                UserDal dal = new UserDal();
+                dal.Users.Add(obj);
+                dal.SaveChanges();
+                return View("Login", obj);
+
             }
-            return View(obj);
+            return View("Register",obj);
         }
 
         public ActionResult Index()

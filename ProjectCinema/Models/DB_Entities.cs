@@ -6,9 +6,9 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 namespace ProjectCinema.Models
 {
-    public class DB_Entities : DbContext
+    /*public class DB_Entities : DbContext
     {
-        public DB_Entities() : base("Movie") { }
+        public DB_Entities() : base("YesCinema") { }
         public DbSet <REGISTER> Users { get; set; }
         public DbSet<MOVIE> MOVIES { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -21,5 +21,5 @@ namespace ProjectCinema.Models
             base.OnModelCreating(modelBuilder);
 
         }
-    }
+    }*/
 }

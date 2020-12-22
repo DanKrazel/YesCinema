@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="ManageRegister" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="REGISTER">
     <Key>
       <PropertyRef Name="USERID" />
@@ -7,9 +7,10 @@
     <Property Name="USERID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONFIRMPASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityContainer Name="DataRegister" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="REGISTER" EntityType="Self.REGISTER" />
   </EntityContainer>
 </Schema>

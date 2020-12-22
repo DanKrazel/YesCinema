@@ -4,16 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProjectCinema.Models;
-using System.Security.Cryptography;
-
-
+using ProjectCinema.Dal;
 
 namespace ProjectCinema.Controllers
 {
     public class MovieController : Controller
     {
-        // GET: Movie
-        private DB_Entities db = new DB_Entities();
+
 
         public ActionResult Movie()
         {
@@ -21,18 +18,21 @@ namespace ProjectCinema.Controllers
         }
 
         [HttpPost]
-        public ActionResult Movie(MOVIE MyMovie)
+        public ActionResult Movie(Movie MyMovie)
         {
 
             if (ModelState.IsValid)
             {
- 
-                db.MOVIES.Add(MyMovie);
-                db.SaveChanges();
+                MovieDal dal = new MovieDal();
+                dal.MOVIES.Add(MyMovie);
+                dal.SaveChanges();
                 return View("Movie", MyMovie);
             }
             else
                 return View("Movie");
         }
+
+
     }
+
 }
