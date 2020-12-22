@@ -8,8 +8,7 @@ namespace ProjectCinema.ViewModel
 {
     public class MovieViewModel
     {
-        public Movie movie { get; set; }
-
-        public List<Movie> movies { get; set; }
+        public Movie Movie { get; set; }
+        public List<Movie> Movies { get; set; }
     }
 }

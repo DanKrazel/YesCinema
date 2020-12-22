@@ -13,7 +13,6 @@ namespace ProjectCinema.Models
 
         [Key]
         [Required]
-        [RegularExpression("^[0-9]{9}$", ErrorMessage = "customer Number must be contain 9 digits ")]
         public string ID { get; set; }
 
         [Required]

@@ -145,11 +145,9 @@
     </Compile>
     <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\Movie.cs" />
-    <Compile Include="Models\MovieGallery.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Login.cs" />
-    <Compile Include="Models\ShoppingCartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\MovieViewModel.cs" />
   </ItemGroup>
@@ -427,12 +425,11 @@
     <Content Include="Views\Shared\_myLayoutPage.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Home\ImagesView.cshtml" />
-    <Content Include="Views\Movie\MovieGallery.cshtml" />
-    <Content Include="Views\Movie\View.cshtml" />
+    <Content Include="Views\Movie\Movie.cshtml" />
+    <Content Include="Views\Movie\DisplayMovieGallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

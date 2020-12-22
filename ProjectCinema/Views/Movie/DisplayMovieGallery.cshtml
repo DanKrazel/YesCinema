@@ -1,0 +1,39 @@
+﻿@model  ProjectCinema.ViewModel.MovieViewModel
+@using ProjectCinema.Models;
+@using ProjectCinema.ViewModel;
+
+@{
+    ViewBag.Title = "MovieGallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MovieGallery</h2>
+
+<table>
+    <tr>
+        <td>Name:</td>
+        <td>Showtime:</td>
+        <td>Price:</td>
+        <td>Salle:</td>
+        <td>MoviePicture:</td>
+    </tr>
+    @foreach (Movie item in Model.Movies)
+    {
+<tr>
+    <td>@item.name</td>
+    <td>@item.showtime</td>
+    <td>@item.price</td>
+    <td>@item.SALLE</td>
+    <td><img src="@Url.Content(@item.moviePicture)" height="100" witdth="100" /></td>
+</tr>
+    }
+</table>
+
+@{
+    WebGrid obj = new WebGrid(Model.Movies);
+}
+
+@obj.GetHtml()
+}
+
+

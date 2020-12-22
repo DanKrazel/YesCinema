@@ -11,7 +11,7 @@ namespace ProjectCinema.Controllers
 {
     public class MovieController : Controller
     {
-        MovieDal dal = new MovieDal();
+
 
 
         public ActionResult Movie()
@@ -25,6 +25,7 @@ namespace ProjectCinema.Controllers
 
             if (ModelState.IsValid)
             {
+                MovieDal dal = new MovieDal();
                 dal.MOVIES.Add(MyMovie);
                 dal.SaveChanges();
                 return View("Movie", MyMovie);
@@ -33,16 +34,20 @@ namespace ProjectCinema.Controllers
                 return View("Movie");
         }
 
-        public ActionResult MovieGallery()
+        public ActionResult DisplayMovieGallery(MovieViewModel model)
         {
-            var Movies = (from movie in dal.MOVIES select movie).ToList();
-            return View(Movies);
+            MovieDal dal = new MovieDal();
+            MovieViewModel mvm = new MovieViewModel();
+            List<Movie> movies = dal.MOVIES.ToList();
+            mvm.Movie = new Movie();
+            mvm.Movies = movies;
+            return View(mvm);
         }
 
         [HttpPost]
-        public ActionResult MovieGallery(MovieViewModel model)
+        public ActionResult DisplayMovieGallery()
         {
-
+            MovieDal dal = new MovieDal();
             if (ModelState.IsValid)
             {
                 var data = dal.MOVIES.ToList();
