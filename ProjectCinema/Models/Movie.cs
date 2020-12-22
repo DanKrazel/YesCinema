@@ -17,13 +17,14 @@ namespace ProjectCinema.Models
         public string ID { get; set; }
 
         [Required]
+        public string name { get; set; }
+
+        [Required]
         public DateTime showtime { get; set; }
 
         [Required]
         public string price { get; set; }
 
-        [Required]
-        public string name { get; set; }
 
         [Required]
         public string SALLE { get; set; }

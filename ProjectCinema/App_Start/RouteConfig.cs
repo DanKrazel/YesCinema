@@ -16,7 +16,7 @@ namespace ProjectCinema
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "ImagesView", id = UrlParameter.Optional }
+                defaults: new { controller = "Movie", action = "MovieGallery", id = UrlParameter.Optional }
             );
         }
     }
