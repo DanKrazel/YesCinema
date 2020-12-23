@@ -6,6 +6,9 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using ProjectCinema.Models;
 using ProjectCinema.Dal;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
 
 namespace ProjectCinema.Dal
 {
@@ -19,5 +22,6 @@ namespace ProjectCinema.Dal
         }
 
         public DbSet<Movie> MOVIES { get; set; }
+
     }
 }

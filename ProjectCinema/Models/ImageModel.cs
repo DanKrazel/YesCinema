@@ -6,6 +6,7 @@ using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
 
+
 namespace ProjectCinema.Models
 {
     public class ImageModel

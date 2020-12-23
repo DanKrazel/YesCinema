@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using ProjectCinema.Models;
@@ -10,7 +13,6 @@ namespace ProjectCinema.Models
 {
     public class Movie
     {
-
         [Key]
         [Required]
         public string ID { get; set; }
@@ -28,8 +30,13 @@ namespace ProjectCinema.Models
         [Required]
         public string SALLE { get; set; }
 
-        [Required]
+
+        [DataType(DataType.Upload)]
+        [Display(Name = "Upload File")]
+        [Required(ErrorMessage = "Please choose file to upload.")]
         public string moviePicture { get; set; }
+
+
 
 
     }
