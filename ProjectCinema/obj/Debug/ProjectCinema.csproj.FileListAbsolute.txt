@@ -148,3 +148,5 @@ C:\Users\97254\Documents\GitHub\DavidTe2\YesCinema\ProjectCinema\bin\fr\System.W
 C:\Users\97254\Documents\GitHub\DavidTe2\YesCinema\ProjectCinema\obj\Debug\ProjectCinema.csproj.CopyComplete
 C:\Users\dande\OneDrive\Documents\GitHub\YesCinema\ProjectCinema\bin\fr\EntityFramework.resources.dll
 C:\Users\dande\OneDrive\Documents\GitHub\YesCinema\ProjectCinema\bin\fr\EntityFramework.SqlServer.resources.dll
+C:\Users\97254\Documents\GitHub\DavidTe2\YesCinema\ProjectCinema\bin\fr\EntityFramework.resources.dll
+C:\Users\97254\Documents\GitHub\DavidTe2\YesCinema\ProjectCinema\bin\fr\EntityFramework.SqlServer.resources.dll

@@ -43,7 +43,7 @@ namespace ProjectCinema.Controllers
             mvm.Movies = movies;
             return View(mvm);
         }
-
+     
         [HttpPost]
         public ActionResult DisplayMovieGallery()
         {
@@ -51,13 +51,26 @@ namespace ProjectCinema.Controllers
             if (ModelState.IsValid)
             {
                 var data = dal.MOVIES.ToList();
-                return View(data);
+                return View();
             }
             else
                 return View("Movie");
         }
 
 
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            Movie obj = new Movie();
+            obj.Delete(id);
+            return RedirectToAction("DisplayMovieGallery");
+        }
+       
+
+
+
     }
 
 }
+
+

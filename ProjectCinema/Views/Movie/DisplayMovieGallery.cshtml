@@ -10,30 +10,43 @@
 <h2>MovieGallery</h2>
 
 <table>
-    <tr>
-        <td>Name:</td>
-        <td>Showtime:</td>
-        <td>Price:</td>
-        <td>Salle:</td>
-        <td>MoviePicture:</td>
-    </tr>
-    @foreach (Movie item in Model.Movies)
+  
+    @foreach (var item in Model.Movies)
     {
-<tr>
-    <td>@item.name</td>
-    <td>@item.showtime</td>
-    <td>@item.price</td>
-    <td>@item.SALLE</td>
-    <td><img src="@Url.Content(@item.moviePicture)" height="100" witdth="100" /></td>
-</tr>
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.moviePicture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SALLE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.showtime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Movie","Delete", new { id = item.ID }) |
+
+        </td>
+    </tr>
+        }
     }
 </table>
 
-@{
-    WebGrid obj = new WebGrid(Model.Movies);
-}
 
-@obj.GetHtml()
-}
+
+
+
+
 
 
