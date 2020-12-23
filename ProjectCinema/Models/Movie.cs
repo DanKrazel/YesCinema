@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using ProjectCinema.Models;
@@ -30,6 +32,19 @@ namespace ProjectCinema.Models
 
         [Required]
         public string moviePicture { get; set; }
+
+        public void Delete(int id)
+        {
+            string conString = ConfigurationManager.ConnectionStrings["EmpContext"].ConnectionString;
+
+            string strDelete = "delete tblemp  where EmpID=" + id;
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                SqlCommand cmd = new SqlCommand(strDelete, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
 
 
     }
