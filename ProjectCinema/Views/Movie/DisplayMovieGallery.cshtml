@@ -19,9 +19,6 @@
             @Html.DisplayFor(modelItem => item.ID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.moviePicture)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
@@ -33,9 +30,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.showtime)
         </td>
+      
+        <td>
+            <img src="@Url.Content("~/Content/Images/@item.moviePicture")" height="100" witdth="100" />
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Movie","Delete", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Movie", "Delete", new { id = item.ID }) |
 
         </td>
     </tr>
