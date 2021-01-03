@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
+<<<<<<< HEAD
 using System.Data;
+=======
+>>>>>>> fe58821709cd7c2aefae13c57b1f711109fa0077
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -35,6 +38,19 @@ namespace ProjectCinema.Models
         [Display(Name = "Upload File")]
         [Required(ErrorMessage = "Please choose file to upload.")]
         public string moviePicture { get; set; }
+
+        public void Delete(int id)
+        {
+            string conString = ConfigurationManager.ConnectionStrings["EmpContext"].ConnectionString;
+
+            string strDelete = "delete tblemp  where EmpID=" + id;
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                SqlCommand cmd = new SqlCommand(strDelete, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
 
 
 
