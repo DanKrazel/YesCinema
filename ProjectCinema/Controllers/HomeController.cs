@@ -8,6 +8,7 @@ using ProjectCinema.Models;
 using ProjectCinema.Dal;
 using System.Security.Cryptography;
 using PayPal.Api;
+using System.IO;
 
 namespace ProjectCinema.Controllers
 {
@@ -22,6 +23,13 @@ namespace ProjectCinema.Controllers
         public ActionResult Home()
         {
             return View();
+        }
+
+        public ActionResult GetImage(string id)
+        {
+            var dir = Server.MapPath("/Content/Images");
+            var path = Path.Combine(dir, id + ".jpg");
+            return base.File(path, "image/jpeg");
         }
 
         public ActionResult ImagesView()

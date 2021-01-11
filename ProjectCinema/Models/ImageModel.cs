@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data;
-using System.Configuration;
-using System.Data.SqlClient;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace ProjectCinema.Models
 {
     public class ImageModel
     {
+        [Key]
         public int ID { get; set; }
-        public string Name { get; set; }
+        [Required]
         public string Image { get; set; }
         
     }

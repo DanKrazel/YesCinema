@@ -30,7 +30,6 @@ namespace ProjectCinema.Models
         [Required]
         public string SALLE { get; set; }
 
-
         [DataType(DataType.Upload)]
         [Display(Name = "Upload File")]
         [Required(ErrorMessage = "Please choose file to upload.")]

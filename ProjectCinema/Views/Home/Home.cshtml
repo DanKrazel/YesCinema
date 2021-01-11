@@ -1,4 +1,4 @@
-﻿
+﻿@model ProjectCinema.Models.ImageModel
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -65,7 +65,7 @@
 <body>
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-5">
         <a class="navbar-brand" href="/">YesCinema</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -73,10 +73,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link active" href="/?Length=4">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="~/MovieGalleryUser/MovieGallery">Movie gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="~/Registration/Login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="~/Registration/Register">Register</a></li>
             </ul>
         </div>
     </nav>
@@ -91,7 +94,8 @@
         </div>
 
         <div class="container-fluid p-0 pt-1">
-            <img src="Content/Images/ImageCine.jpg" class="img-fluid" alt="01">
+            <!--<img src="Content/Images/ImageCine.jpg" class="img-fluid" alt="01">-->
+            <img src="~/Home/GetImage/ImageCine" class="img-fluid" alt="01">
         </div>
 
 
@@ -101,7 +105,7 @@
         </div>
 
         <!--Three Images in a Row -->
-        
+
         <div class="container-fluid EmptyRow">
             <div class="row">
             </div>
@@ -109,38 +113,23 @@
 
 
 
-        <div class="container-fluid PaddingBottom">
-            <div class="row text-center padding">
-                <div class="col-12">
-                    <h2>Follow Us On</h2>
-                </div>
-                <div class="col-12 social">
-                    <a href="#"><img src="Content/Images/facebook.png" class="img-fluid" /></a>
-                    <a href="#"><img src="Content/Images/twitter.png" class="img-fluid" /></a>
-                    <a href="#"><img src="Content/Images/googleplus.png" class="img-fluid" /></a>
-                    <a href="#"><img src="Content/Images/instagram.png" class="img-fluid" /></a>
-                    <a href="#"><img src="Content/Images/youtube.png" class="img-fluid" /></a>
-                </div>
+        <!--<div class="container-fluid PaddingBottom">
+        <div class="row text-center padding">
+            <div class="col-12">
+                <h2>Follow Us On</h2>
+            </div>
+            <div class="col-12 social">
+                <a href="#"><img src="~/Home/GetImage/facebook" class="img-fluid" /></a>
+                <a href="#"><img src=~/Home/GetImage/twitter" class="img-fluid" /></a>
+                <a href="#"><img src="~/Home/GetImage/googleplus" class="img-fluid" /></a>
+                <a href="#"><img src="~/Home/GetImage/instagram" class="img-fluid" /></a>
+                <a href="#"><img src="~/Home/GetImage/youtube" class="img-fluid" /></a>
             </div>
         </div>
+    </div>-->
 
         <footer>
-
-            <div class="container-fluid padding">
-                <div class="row text-center padding">
-
-                    <div class="col-md-4 padding">
-                        <hr class="bg-light" />
-                        <h5>Opening Hour</h5>
-                        <hr class="bg-light" />
-                        <p>Saturday To Wednesday : 8am-6pm</p>
-                        <p>Thursday : 8am-1pm</p>
-                        <p>Friday : Holiday</p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="PaddingBottom text-center">
+            <div class="text-center">
                 <hr class="bg-light" />
                 <p>&copy; 2020 - YesCinema</p>
             </div>

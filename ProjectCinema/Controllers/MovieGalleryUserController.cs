@@ -19,15 +19,6 @@ namespace ProjectCinema.Controllers
             return View();
         }
 
-        public ActionResult GetList()
-        {
-            using (MovieDal db = new MovieDal())
-            {
-                List<Movie> empList = db.MOVIES.ToList<Movie>();
-                return Json(new { data = empList }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
         public ActionResult MovieGallery(MovieViewModel model)
         {
             MovieDal dal = new MovieDal();

@@ -18,7 +18,7 @@ namespace ProjectCinema.Dal
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Movie>().ToTable("tblMOVIE");
+            modelBuilder.Entity<Movie>().ToTable("tblMovie");
         }
 
         public DbSet<Movie> MOVIES { get; set; }

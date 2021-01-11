@@ -31,7 +31,7 @@ namespace ProjectCinema.Controllers
                     //add session
                     Session["USERNAME"] = data.FirstOrDefault().USERNAME;
                     Session["PASSWORD"] = data.FirstOrDefault().PASSWORD;
-                    return RedirectToAction("Home/Home");
+                    return RedirectToAction("Home","Home");
                 }
                 else
                 {

@@ -15,7 +15,7 @@ namespace ProjectCinema.Controllers
     {
 
 
-        public ActionResult GetList ()
+        public ActionResult GetList()
         {
             using (MovieDal db = new MovieDal())
             {
@@ -58,7 +58,7 @@ namespace ProjectCinema.Controllers
             mvm.Movies = movies;
             return View(mvm);
         }
-     
+
         [HttpPost]
         public ActionResult ManageMovie()
         {
@@ -156,7 +156,7 @@ namespace ProjectCinema.Controllers
             }
             return View("ManageMovie");
         }
-        
+
 
         [HttpPost]
         public ActionResult Delete(int id)
@@ -165,7 +165,7 @@ namespace ProjectCinema.Controllers
             obj.Delete(id);
             return RedirectToAction("DisplayMovieGallery");
         }
-       
+
 
 
 
