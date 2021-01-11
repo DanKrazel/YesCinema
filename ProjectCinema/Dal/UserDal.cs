@@ -11,11 +11,11 @@ namespace ProjectCinema.Dal
 {
     public class UserDal : DbContext
     {
-        public DbSet<Register> Users { get; set; }
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //Database.SetInitializer<demoEntities>(null);
-            modelBuilder.Entity<Register>().ToTable("tblUser");
+            modelBuilder.Entity<User>().ToTable("tblUser");
             base.OnModelCreating(modelBuilder);
 
         }

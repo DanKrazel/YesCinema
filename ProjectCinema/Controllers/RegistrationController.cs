@@ -31,7 +31,7 @@ namespace ProjectCinema.Controllers
                     //add session
                     Session["USERNAME"] = data.FirstOrDefault().USERNAME;
                     Session["PASSWORD"] = data.FirstOrDefault().PASSWORD;
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Home/Home");
                 }
                 else
                 {
@@ -49,7 +49,7 @@ namespace ProjectCinema.Controllers
 
 
         [HttpPost]
-        public ActionResult Register(Register obj)
+        public ActionResult Register(User obj)
 
         {
             if (ModelState.IsValid)

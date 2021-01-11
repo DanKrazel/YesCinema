@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
-<<<<<<< HEAD
 using System.Data;
-=======
->>>>>>> fe58821709cd7c2aefae13c57b1f711109fa0077
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;

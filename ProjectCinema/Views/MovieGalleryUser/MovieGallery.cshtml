@@ -1,0 +1,60 @@
+﻿﻿@model  ProjectCinema.ViewModel.MovieViewModel
+@using ProjectCinema.Models;
+@using ProjectCinema.ViewModel;
+
+
+    @{
+        ViewBag.Title = "Movie Gallery";
+    }
+
+
+    <h2>MovieGallery</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Movie_name
+                </th>
+                <th>
+                    Showtime
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                   Salle
+                </th>
+                <th>
+                    MoviePicture
+                </th>
+
+            </tr>
+        </thead>
+
+
+
+        @foreach (var item in Model.Movies)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.showtime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SALLE)
+                </td>
+                <td>
+                    <img src=@item.moviePicture width="250" height="250" />
+                </td>
+                <td>
+                    @Html.ActionLink("BookYourTicket", "BookYourTicket", new { id = item.ID }) |
+                </td>
+            </tr>
+        }
+
+    </table>

@@ -74,7 +74,7 @@ namespace ProjectCinema.Controllers
         }
 
 
-<<<<<<< HEAD
+
         [HttpGet]
         public ActionResult Save(string id)
         {
@@ -157,7 +157,7 @@ namespace ProjectCinema.Controllers
             return View("ManageMovie");
         }
         
-=======
+
         [HttpPost]
         public ActionResult Delete(int id)
         {
@@ -169,15 +169,14 @@ namespace ProjectCinema.Controllers
 
 
 
->>>>>>> fe58821709cd7c2aefae13c57b1f711109fa0077
     }
 }
 
 
 
-<<<<<<< HEAD
-=======
-}
 
 
->>>>>>> fe58821709cd7c2aefae13c57b1f711109fa0077
+
+
+
+

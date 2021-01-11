@@ -154,3 +154,6 @@ C:\Users\97254\Documents\GitHub\DavidTe2\YesCinema\ProjectCinema\bin\fr\EntityFr
 C:\Users\97254\Documents\GitHub\DavidTe2\YesCinema\ProjectCinema\bin\AspNet.ScriptManager.jQuery.dll
 =======
 >>>>>>> fe58821709cd7c2aefae13c57b1f711109fa0077
+C:\Users\dande\OneDrive\Documents\GitHub\YesCinema\ProjectCinema\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\dande\OneDrive\Documents\GitHub\YesCinema\ProjectCinema\bin\PayPal.dll
+C:\Users\dande\OneDrive\Documents\GitHub\YesCinema\ProjectCinema\bin\PayPal.xml
