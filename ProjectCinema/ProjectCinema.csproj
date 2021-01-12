@@ -60,6 +60,15 @@
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Primitives.5.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -67,10 +76,26 @@
       <HintPath>packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -134,29 +159,38 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieGalleryUserController.cs" />
     <Compile Include="Controllers\MovieUploadController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
+    <Compile Include="Dal\AdminDal.cs" />
     <Compile Include="Dal\ImageDal.cs" />
     <Compile Include="Dal\ImagesDal.cs" />
     <Compile Include="Dal\MovieDal.cs" />
+    <Compile Include="Dal\SeatDal.cs" />
     <Compile Include="Dal\TicketsDal.cs" />
     <Compile Include="Dal\UserDal.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\ForgetPassword.cs" />
+    <Compile Include="Models\Hall.cs" />
     <Compile Include="Models\ImageModel.cs" />
+    <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieUploadModel.cs" />
     <Compile Include="Models\PaypalConfiguration.cs" />
+    <Compile Include="Models\Seat.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Tickets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\MovieViewModel.cs" />
+    <Compile Include="ViewModel\SeatViewModel.cs" />
     <Compile Include="ViewModel\SortMovies.cs" />
     <Compile Include="ViewModel\TicketsViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
@@ -434,9 +468,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\README.md" />
     <Content Include="Views\Registration\Register.cshtml" />
     <Content Include="Views\Registration\Login.cshtml" />
@@ -450,13 +481,18 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.min.js.map" />
     <Content Include="Views\Movie\Save.cshtml" />
     <Content Include="Views\Tickets\DisplayTickets.cshtml" />
-    <Content Include="Views\MovieGalleryUser\MovieGallery.cshtml" />
-    <Content Include="Views\MovieGalleryUser\BookYourTicket.cshtml" />
+    <Content Include="Views\Home\MovieGallery.cshtml" />
+    <Content Include="Views\Home\BookYourTicket.cshtml" />
     <Content Include="Views\Home\FailureView.cshtml" />
     <Content Include="Views\Home\SuccessView.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Admin\ManageHall.cshtml" />
+    <Content Include="Views\Admin\SlideMenu.cshtml" />
+    <Content Include="Views\Home\BookingSeat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\MovieGalleryUser\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

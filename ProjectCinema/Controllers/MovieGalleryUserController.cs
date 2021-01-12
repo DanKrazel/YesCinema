@@ -14,10 +14,18 @@ namespace ProjectCinema.Controllers
     public class MovieGalleryUserController : Controller
     {
         // GET: MovieGalleryForUser
+        MovieDal _movieDal;
+        UserDal _userDal;
+        public MovieGalleryUserController(MovieDal movieDal,UserDal userDal)
+        {
+            _movieDal = movieDal;
+            _userDal = userDal;
+        }
         public ActionResult Index()
         {
             return View();
         }
+
 
         public ActionResult MovieGallery(MovieViewModel model)
         {
