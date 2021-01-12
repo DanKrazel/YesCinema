@@ -25,7 +25,7 @@ namespace ProjectCinema.Controllers
         }
 
 
-        public ActionResult DisplayMovieGallery(MovieViewModel model)
+        /*public ActionResult DisplayMovieGallery(MovieViewModel model)
         {
             MovieDal dal = new MovieDal();
             MovieViewModel mvm = new MovieViewModel();
@@ -46,7 +46,7 @@ namespace ProjectCinema.Controllers
             }
             else
                 return View("Movie");
-        }
+        }*/
 
 
         public ActionResult ManageMovie(MovieViewModel model)

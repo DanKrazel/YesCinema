@@ -11,13 +11,13 @@ namespace ProjectCinema.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CustomerID { get; set; }
+        public string Number { get; set; }
+        [Key]
+        public string UserID { get; set; }
         [Required]
         public string Hall { get; set; }
         [Required]
         public string Range { get; set; }
-        [Required]
-        public string Number { get; set; }
         [Required]
         public DateTime date { get; set; }
     }
