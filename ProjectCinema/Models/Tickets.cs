@@ -9,16 +9,8 @@ namespace ProjectCinema.Models
 {
 	public class Tickets
 	{
-
-        /*public Tickets()
-        {
-            USERID = "1";
-        }*/
-
         [Key]
-        public int ID { get; set; }
-        [Key]    
-        public string USERID { get; set; }
+        public string ID { get; set; }
         [Required]
         public string MOVIENAME { get; set; }
         [Required]       
@@ -27,7 +19,6 @@ namespace ProjectCinema.Models
         public string SEAT { get; set; }
         [Required]
         public string COST { get; set; }
-        [Key]
-        public string MOVIEID { get; set; }
+
     }
 }

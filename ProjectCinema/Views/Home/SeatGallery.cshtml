@@ -1,0 +1,54 @@
+﻿﻿@model  ProjectCinema.ViewModel.SeatViewModel
+@using ProjectCinema.Models;
+@using ProjectCinema.ViewModel;
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<h2>SeatGallery</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Hall
+            </th>
+            <th>
+                Range
+            </th>
+            <th>
+                Number
+            </th>
+            <th>
+                Salle
+            </th>
+            <th>
+                Date
+            </th>
+
+        </tr>
+    </thead>
+
+    @foreach (var item in Model.Seats)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hall)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Range)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdSeat }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdSeat }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdSeat })
+            </td>
+        </tr>
+    }
+
+</table>

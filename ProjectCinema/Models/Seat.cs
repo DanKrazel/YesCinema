@@ -10,14 +10,13 @@ namespace ProjectCinema.Models
     public class Seat
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Number { get; set; }
-        [Key]
-        public string UserID { get; set; }
+        public string IdSeat { get; set; }
         [Required]
         public string Hall { get; set; }
         [Required]
         public string Range { get; set; }
+        [Required]
+        public string Number { get; set; }
         [Required]
         public DateTime date { get; set; }
     }

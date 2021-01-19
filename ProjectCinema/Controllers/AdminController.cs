@@ -12,7 +12,16 @@ using ProjectCinema.ViewModel;
 namespace ProjectCinema.Controllers
 {
     public class AdminController : Controller
+
     {
+        public ActionResult GetList()
+        {
+            using (HallDal db = new HallDal())
+            {
+                List<Hall> empList = db.Halls.ToList<Hall>();
+                return Json(new { data = empList }, JsonRequestBehavior.AllowGet);
+            }
+        }
         // GET: Admin
         public ActionResult Index()
         {
@@ -26,7 +35,7 @@ namespace ProjectCinema.Controllers
 
             list.Add(new MenuItem { Link = "ManageHall", LinkName = "ManageHall" });
             list.Add(new MenuItem { Link = "Admin", LinkName = "Admin" });
-            list.Add(new MenuItem { Link = "/Movie/ManageMovie", LinkName = "MovieManager" });
+            list.Add(new MenuItem { Link = "ManageSeat", LinkName = "ManageSeat" });
 
 
             return PartialView("SlideMenu", list);
@@ -52,29 +61,163 @@ namespace ProjectCinema.Controllers
             return View("Admin", obj);
         }
 
-        public static char getChar(int i)
-        {
-            return i < 0 || i > 25 ? '?' : (char)('A' + i);
-        }
-        public ActionResult ManageHall()
+        public ActionResult ManageSeat()
         {
             return View();
         }
 
- 
         [HttpPost]
-        public ActionResult ManageHall(Seat obj)
+        public ActionResult ManageSeat(Seat obj)
 
         {
             if (ModelState.IsValid)
             {
                 SeatDal dal = new SeatDal();
-                dal.Seats.Add(obj);
-                dal.SaveChanges();
-                return View("SlideMenu");
+                HallDal Haldal = new HallDal();
+                if (Haldal.Halls.Where(s => s.IDHall.Equals(obj.Hall)).Count() > 0)
+                {
+                    dal.Seats.Add(obj);
+                    dal.SaveChanges();
+                    return View("SlideMenu");
+
+                }
+                else
+                {
+                    return RedirectToAction("ManageSeat");
+                }
+
+            }
+            return View("SlideMenu");
+
+        }
+
+        public ActionResult ManageHall()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ManageHall(Hall obj)
+
+        {
+            if (ModelState.IsValid)
+            {
+
+                HallDal Haldal = new HallDal();
+
+                Haldal.Halls.Add(obj);
+                Haldal.SaveChanges();
+
+                return RedirectToAction("HallGallery");
 
             }
             return View();
         }
+
+
+        public ActionResult HallGallery(MovieViewModel model)
+        {
+            HallDal Halldal = new HallDal();
+            HallViewModel mvm = new HallViewModel();
+            List<Hall> HALLS = Halldal.Halls.ToList();
+            mvm.Hall = new Hall();
+            mvm.Halls = HALLS;
+            return View(mvm);
+        }
+
+        [HttpPost]
+        public ActionResult HallGallery()
+        {
+            HallDal dal = new HallDal();
+            if (ModelState.IsValid)
+            {
+                var data = dal.Halls.ToList();
+                return View();
+            }
+            else
+
+                return View("Admin/HallGallery");
+        }
+
+        [HttpGet]
+        public ActionResult Save(string id)
+        {
+            using (HallDal dc = new HallDal())
+            {
+                var v = dc.Halls.Where(a => a.IDHall == id).FirstOrDefault();
+                return View(v);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Save(Hall emp)
+        {
+            bool status = false;
+            if (ModelState.IsValid)
+            {
+                using (HallDal dc = new HallDal())
+                {
+                    if (emp.IDHall != null)
+                    {
+                        //Edit 
+                        var v = dc.Halls.Where(a => a.IDHall == emp.IDHall).FirstOrDefault();
+                        if (v != null)
+                        {
+
+                            v.NumberOfseat = emp.NumberOfseat;
+                        }
+                    }
+                    else
+                    {
+                        //Save
+                        dc.Halls.Add(emp);
+                    }
+                    dc.SaveChanges();
+                    status = true;
+                    return View("HallGallery");
+
+                }
+            }
+            return new JsonResult { Data = new { status = status } };
+        }
+
+
+        [HttpGet]
+        public ActionResult Delete(string id)
+        {
+            using (HallDal dc = new HallDal())
+            {
+                var v = dc.Halls.Where(a => a.IDHall == id).FirstOrDefault();
+                if (v != null)
+                {
+                    return View(v);
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult DeleteMovie(string id)
+        {
+
+            using (HallDal dc = new HallDal())
+            {
+                var v = dc.Halls.Where(a => a.IDHall == id).FirstOrDefault();
+                if (v != null)
+                {
+                    dc.Halls.Remove(v);
+                    dc.SaveChanges();
+                    return View("HallGallery");
+
+                }
+            }
+            return View("HallGallery");
+        }
+
+
     }
 }

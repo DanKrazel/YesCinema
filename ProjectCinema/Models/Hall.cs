@@ -9,7 +9,9 @@ namespace ProjectCinema.Models
     public class Hall
     {
         [Key]
-        public string USERID { get; set; }
-      
+        public string IDHall { get; set; }
+        [Required]
+        public string NumberOfseat { get; set; }
+
     }
 }
