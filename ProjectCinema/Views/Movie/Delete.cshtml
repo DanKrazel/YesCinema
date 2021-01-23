@@ -32,6 +32,10 @@
     </div>
 
     <div class="form-group">
+        <label>ageLimitation</label>
+        <p>@Model.ageLimitation</p>
+    </div>
+    <div class="form-group">
         <label>moviePicture</label>
         <p>@Model.moviePicture</p>
     </div>
@@ -39,6 +43,9 @@
     <div>
         <input type="submit" value="Delete" />
     </div>
+
+    @Html.ActionLink("Return To Menu", "SlideMenu", "Admin")
+
 }
 
 

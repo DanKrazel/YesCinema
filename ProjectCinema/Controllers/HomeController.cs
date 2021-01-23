@@ -10,19 +10,14 @@ using ProjectCinema.ViewModel;
 using ProjectCinema.Dal;
 using System.Data.Entity;
 using System.IO;
-using PayPal.Api;
+
+
 
 namespace ProjectCinema.Controllers
 {
     public class HomeController : Controller
     {
-        /*private MovieDal _movieDal = new MovieDal();
-        private UserDal _userDal = new UserDal();
-        public HomeController(MovieDal movieDal, UserDal userDal)
-        {
-            _movieDal = movieDal;
-            _userDal = userDal;
-        }*/
+
         public ActionResult Index()
         {
             return View();
@@ -42,13 +37,6 @@ namespace ProjectCinema.Controllers
             var dir = Server.MapPath("/Content/Images");
             var path = Path.Combine(dir, id + ".jpg");
             return base.File(path, "image/jpeg");
-        }
-
-        public ActionResult ImagesView()
-        {
-
-            ImagesDal dal = new ImagesDal();
-            return View(dal.Images.ToList());
         }
 
         public ActionResult MovieGallery(MovieViewModel model)
@@ -75,31 +63,8 @@ namespace ProjectCinema.Controllers
                 return View("MovieGallery");
         }
 
-        public ActionResult SeatGallery(MovieViewModel model)
-        {
-            SeatDal dal = new SeatDal();
-            SeatViewModel mvm = new SeatViewModel();
-            List<Seat> seats = dal.Seats.ToList();
-            mvm.Seat= new Seat();
-            mvm.Seats = seats;
-            return View(mvm);
-        }
 
-        [HttpPost]
-        public ActionResult SeatGallery()
-        {
-            SeatDal dal = new SeatDal();
-            if (ModelState.IsValid)
-            {
-                var data = dal.Seats.ToList();
-                return View();
-            }
-            else
-
-                return View("SeatGallery");
-        }
-
-        public ActionResult BookTicket(string id)
+        public ActionResult BookTicket(string idSeat)
         {
             /*TicketsDal dal = new TicketsDal();
             MovieDal movieDal = new MovieDal();
@@ -110,78 +75,39 @@ namespace ProjectCinema.Controllers
             mvm.TicketsList = tickets;
             return View(mvm);*/
             Tickets mvm = new Tickets();
+            ItemCart itemCart = new ItemCart();
             MovieDal dal = new MovieDal();
-            var item = dal.MOVIES.Where(a => a.ID == id).FirstOrDefault();
-            mvm.MOVIENAME = item.name;
-            mvm.SHOWTIME = item.showtime;
-            mvm.COST = item.price; 
+            SeatDal seatDal = new SeatDal();
+            var itemSeat2 = seatDal.Seats.Where(a => a.IdSeat == idSeat).FirstOrDefault();
+            var itemsMovie3 = dal.MOVIES.Where(a => a.SALLE == itemSeat2.Hall && a.showtime == itemSeat2.date).FirstOrDefault();
+
+            //var item = dal.MOVIES.Where(a => a.ID == itemsMovie3.ID).FirstOrDefault();
+            //var itemSeat = seatDal.Seats.Where(a => a.IdSeat == id).FirstOrDefault();
+            mvm.MOVIENAME = itemsMovie3.name;
+            mvm.SHOWTIME = itemsMovie3.showtime;
+            mvm.COST = itemsMovie3.price;
+            mvm.SEAT = itemSeat2.Number;
+
+
             return View(mvm);
         }
 
         [HttpPost]
         public ActionResult BookTicket(Tickets obj)
         {
-            /*if (ModelState.IsValid)
-            {
-                UserDal userDal = new UserDal();
-                TicketsDal dal = new TicketsDal();
-                TicketsViewModel tickets = new TicketsViewModel();
-                //List<Tickets> tickets = new List<Tickets>();
-                int count = 1;
-                bool flag = true;
-                string seatno = mvm.SEAT.ToString();
-                string movieId = mvm.MOVIEID;
-                string[] seatNoArray = seatno.Split(',');
-                count = seatNoArray.Length;
-                if (checkseat(seatno, movieId) == false)
-                {
-                    foreach (var item in seatNoArray)
-                    {
-                        tickets.TicketsList.Add(new Tickets { COST =mvm.COST, MOVIEID = mvm.MOVIEID, USERID = mvm.USERID, SHOWTIME = mvm.SHOWTIME, SEAT = item });
-                    }
-
-                    foreach (var item in tickets.TicketsList)
-                    {
-                        dal.TicketsList.Add(item);
-                        dal.SaveChanges();
-                    }
-                    TempData["Success"] = "Seat no booked,check your ticket";
-                }
-                else
-                {
-                    TempData["SeatNoMasg"] = "Please, change your seat number";
-                }
-                return View("BookYourTicket", mvm);
-            }
-            return View("BookYourTicket");
-
+           
             if (ModelState.IsValid)
             {
-                MovieDal movieDal = new MovieDal();
-                TicketsDal dal = new TicketsDal();
-                var item = movieDal.MOVIES.Where(a => a.ID == mvm.MOVIEID).FirstOrDefault(); ;
-                mvm.USERID = "1";
-                mvm.MOVIENAME = item.name;
-                mvm.SHOWTIME = item.showtime;
-                mvm.COST = item.price;
 
-
-                dal.TicketsList.Add(mvm);
-                dal.SaveChanges();
-                return View("BookYourTicket", mvm);
-            }
-            return View("MovieGallery", mvm);*/
-            if (ModelState.IsValid)
-            {
                 TicketsDal dal = new TicketsDal();
                 //MovieDal movieDal = new MovieDal();
                 SeatDal seatDal = new SeatDal();
                 if (seatDal.Seats.Where(s => s.Number.Equals(obj.SEAT)).Count()>0)
                 {
+                    //var data = dal.TicketsList.ToList();
                     dal.TicketsList.Add(obj);
                     dal.SaveChanges();
-                    return View("MovieGallery");
-
+                    return View("DetailsTickets",obj) ;            
                 }
                 else
                 {
@@ -190,45 +116,122 @@ namespace ProjectCinema.Controllers
 
             }
             return View("MovieGallery");
+
         }
 
-        /*private bool checkseat(string seatno, string movieId)
+        public ActionResult DetailsTickets()
         {
-            bool flag = true;
-            TicketsDal dal = new TicketsDal();
-            string seat = seatno;
-            string[] seatreserve = seat.Split(',');
-            var seatnolist = dal.TicketsList.Where(a => a.MOVIEID == movieId).ToList();
-            foreach (var item in seatnolist)
+            return View();
+        }
+
+        [HttpPost]       
+        public ActionResult DetailsTickets(ItemCart obj)
+        {   
+            if (ModelState.IsValid)
             {
-                string alreadybook = item.SEAT;
-                foreach (var item1 in seatreserve)
+                ItemCartDal itemDal = new ItemCartDal();
+                /*if (itemDal.itemsCart.Where(s => s.MOVIENAME.Equals(obj.MOVIENAME) && s.SHOWTIME.Equals(obj.SHOWTIME)).Count() > 0)
                 {
-                    if (item1 == alreadybook)
+                    itemDal.itemsCart
+                }*/
+                //var data = dal.itemsCart.ToList();
+                //return View();
+                itemDal.itemsCart.Add(obj);
+                itemDal.SaveChanges();
+                return View("ShoppingCart","Cart");
+            }
+
+           return View();
+
+        }
+
+        [HttpGet]
+        public ActionResult SeatGalleryUser(string id)
+        {
+            SeatDal dal = new SeatDal();
+            MovieDal dal2 = new MovieDal();
+            userSeatViewModel mvm2 = new userSeatViewModel();
+            SeatViewModel mvm = new SeatViewModel();
+            List<Seat> Seatss = new List<Seat>();
+            var item = dal2.MOVIES.Where(a => a.ID == id).FirstOrDefault();
+            for (int i = 0; i < dal.Seats.ToList().Count(); i++)
+            {
+                if (dal.Seats.ToList()[i].Hall == item.SALLE && dal.Seats.ToList()[i].date == item.showtime)
+                {
+                    Seatss.Add(dal.Seats.ToList()[i]);
+                }
+
+            }
+            mvm2.Seat = new Seat();
+            mvm2.Seats = Seatss;
+            return View(mvm2);
+        }
+
+        [HttpPost]
+        public ActionResult SeatGalleryUser()
+        {
+            SeatDal dal = new SeatDal();
+            if (ModelState.IsValid)
+            {
+                var data = dal.Seats.ToList();
+                return View();
+            }
+            else
+
+                return View("Home/MovieGallery");
+        }
+
+        [HttpGet]
+        public ActionResult Reserve(string id)
+        {
+            using (SeatDal dc = new SeatDal())
+            {
+                var v = dc.Seats.Where(a => a.IdSeat == id).FirstOrDefault();
+                return View(v);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Reserve(Seat emp)
+        {
+            bool status = false;
+            if (ModelState.IsValid)
+            {
+                using (SeatDal dc = new SeatDal())
+                {
+                    if (emp.IdSeat != null && emp.reserve==false)
                     {
-                        flag = false;
-                        break;
+                        //Edit 
+                        var v = dc.Seats.Where(a => a.IdSeat == emp.IdSeat).FirstOrDefault();
+                        if (v != null)
+                        {
+
+                            v.reserve = true;
+                        }
                     }
+                    else
+                    {
+                        //Save
+                        return View("AlreadyOccuped");
+                    }
+                    dc.SaveChanges();
+                    
+                    status = true;
+
+                    MovieDal dal2 = new MovieDal();
+                    var item = dal2.MOVIES.Where(a => a.SALLE == emp.Hall && a.showtime == emp.date).FirstOrDefault();
+                    //return View("BookTicket");
+
+                    return RedirectToAction("BookTicket",new { idSeat = emp.IdSeat });
+
                 }
             }
-            if (flag == false)
-                return true;
-            else
-                return false;
-        }*/
-
-
-        /*[HttpPost]
-        public ActionResult checkseat(DateTime showtime,Tickets BookYourTicket)
-        {
-            MovieDal movieDal = new MovieDal();
-            string seatno = string.Empty;
-            var movielist = movieDal.Where(a =>a. == showtime).ToList();
-            return View();
-        }*/
-
-       
-
+            return new JsonResult { Data = new { status = status } };
+        }
 
     }
+
+
+
+
 }

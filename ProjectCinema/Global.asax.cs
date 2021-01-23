@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using ProjectCinema.Dal;
+using System.Web.Configuration;
+using Stripe;
 
 namespace ProjectCinema
 {
@@ -19,6 +21,8 @@ namespace ProjectCinema
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            var secretKey = WebConfigurationManager.AppSettings["StripeSecretKey"];
+            StripeConfiguration.ApiKey = secretKey;
         }
 
         public void ConfigureServices(IServiceCollection services)

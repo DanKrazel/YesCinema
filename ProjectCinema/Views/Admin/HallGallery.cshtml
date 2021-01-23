@@ -18,7 +18,7 @@
             <th>NumberOfseat</th>
             <th>EDIT</th>
             <th>DELETE</th>
-            
+
 
         </tr>
 
@@ -27,6 +27,9 @@
 
 </table>
 @Html.ActionLink("Add", "ManageHall", "Admin")
+
+@Html.ActionLink("Return To Menu", "SlideMenu", "Admin")
+
 <!-- Normal -->
 <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
 
@@ -57,7 +60,7 @@
     @*<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet" />
         <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>*@
 
-<script>
+    <script>
 
 
 
@@ -74,7 +77,7 @@
                     "columns": [
                         { "data": "IDHall" },
                         { "data": "NumberOfseat" },
-                       
+
 
                         {
                             "data": "IDHall", "width": "50px", "render": function (data) {
@@ -85,7 +88,8 @@
                             "data": "IDHall", "width": "50px", "render": function (data) {
                                 return '<a class="popup" href="/Admin/Delete/' + data + '">Delete</a>';
                             }
-                        }
+                        },
+
 
                     ]
 
@@ -122,7 +126,7 @@
         }
 
         });
-</script>
+    </script>
 }
 
 

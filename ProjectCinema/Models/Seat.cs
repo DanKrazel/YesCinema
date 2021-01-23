@@ -19,5 +19,7 @@ namespace ProjectCinema.Models
         public string Number { get; set; }
         [Required]
         public DateTime date { get; set; }
+
+        public bool reserve { get; set; }
     }
 }

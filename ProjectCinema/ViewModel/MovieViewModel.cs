@@ -12,5 +12,16 @@ namespace ProjectCinema.ViewModel
         public Movie Movie { get; set; }
         public List<Movie> Movies { get; set; }
 
+        public List<Movie> findAll()
+        {
+            return this.Movies;
+        }
+        public Movie find(string id)
+        {
+            return this.Movies.Single(p => p.ID.Equals(id));
+        }
+
     }
+
+
 }

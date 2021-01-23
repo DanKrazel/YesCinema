@@ -33,9 +33,11 @@ namespace ProjectCinema.Controllers
 
             List<MenuItem> list = new List<MenuItem>();
 
-            list.Add(new MenuItem { Link = "ManageHall", LinkName = "ManageHall" });
-            list.Add(new MenuItem { Link = "Admin", LinkName = "Admin" });
-            list.Add(new MenuItem { Link = "ManageSeat", LinkName = "ManageSeat" });
+            list.Add(new MenuItem { Link = "Movie/ManageMovie", LinkName = "ManageMovie" });
+            list.Add(new MenuItem { Link = "Admin/ManageHall", LinkName = "ManageHall" });
+            list.Add(new MenuItem { Link = "Admin/ManageSeat", LinkName = "ManageSeat" });
+            list.Add(new MenuItem { Link = "Admin/Admin", LinkName = "Create new worker" });
+
 
 
             return PartialView("SlideMenu", list);
@@ -55,7 +57,7 @@ namespace ProjectCinema.Controllers
                 AdminDal AD = new AdminDal();
                 AD.Admin.Add(obj);
                 AD.SaveChanges();
-                return RedirectToAction("ManageMovie", "Movie");
+                return RedirectToAction("SlideMenu", "Admin");
 
             }
             return View("Admin", obj);
@@ -218,6 +220,22 @@ namespace ProjectCinema.Controllers
             return View("HallGallery");
         }
 
+        public ActionResult GetListSeat()
+        {
+            using (SeatDal db = new SeatDal())
+            {
+                List<Seat> empList = new List<Seat>();
+                for (int i = 0; i < db.Seats.ToList<Seat>().Count(); i++)
+                {
+                    if (db.Seats.ToList<Seat>()[i].reserve == false)
+                    {
+                        empList.Add(db.Seats.ToList<Seat>()[i]);
+                    }
+
+                }
+                return Json(new { data = empList }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
     }
 }

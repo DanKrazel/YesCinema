@@ -19,6 +19,7 @@
             <th>SHOWTIME</th>
             <th>PRICE</th>
             <th>SALLE</th>
+            <th>age</th>
             <th>IMAGE</th>
             <th>EDIT</th>
             <th>DELETE</th>
@@ -29,6 +30,8 @@
 
 </table>
 @Html.ActionLink("Add", "NewMovie", "MovieUpload")
+
+@Html.ActionLink("Return To Menu", "SlideMenu", "Admin")
 <!-- Normal -->
 <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
 
@@ -87,10 +90,11 @@
 
                         { "data": "price" },
                         { "data": "SALLE" },
+                        {"data" : "ageLimitation"},
                         {
                             "data": "moviePicture",
                             "render": function (data) {
-                                return '<img src="~\Content\Images\ ' +data + '" class="avatar" width="50" height="50"/>';
+                                return '<img src=/Images/' + data + " height=\"50\"/>";
                             }
                         },
 

@@ -13,6 +13,8 @@ namespace ProjectCinema.Controllers
 {
     public class RegistrationController : Controller
     {
+        public object WebSecurity { get; private set; }
+
         public ActionResult Login()
         {
             return View();
@@ -21,24 +23,28 @@ namespace ProjectCinema.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(string username, string password)
+
+
         {
             if (ModelState.IsValid)
             {
                 UserDal dal = new UserDal();
-                var data = dal.Users.Where(s => s.USERNAME.Equals(username) && s.PASSWORD.Equals(password)).ToList();
-                if (data.Count() > 0)
+                AdminDal addal = new AdminDal();
+                if (dal.Users.Where(s => s.USERNAME.Equals(username) && s.PASSWORD.Equals(password)).Count() > 0)
                 {
                     //add session
-                    Session["USERNAME"] = data.FirstOrDefault().USERNAME;
-                    Session["PASSWORD"] = data.FirstOrDefault().PASSWORD;
-                    return RedirectToAction("Home","Home");
+                    Session["USERNAME"] = dal.Users.Where(s => s.USERNAME.Equals(username) && s.PASSWORD.Equals(password)).FirstOrDefault().USERNAME;
+                    Session["PASSWORD"] = dal.Users.Where(s => s.USERNAME.Equals(username) && s.PASSWORD.Equals(password)).FirstOrDefault().PASSWORD;
+                    return RedirectToAction("Home", "Home");
                 }
-                else
+                else if (addal.Admin.Where(s => s.USERNAME.Equals(username) && s.PASSWORD.Equals(password)).Count() > 0)
                 {
-                    ViewBag.error = "Login failed";
-                    return RedirectToAction("Login");
+                    Session["USERNAME"] = addal.Admin.Where(s => s.USERNAME.Equals(username) && s.PASSWORD.Equals(password)).FirstOrDefault().USERNAME;
+                    Session["PASSWORD"] = addal.Admin.Where(s => s.USERNAME.Equals(username) && s.PASSWORD.Equals(password)).FirstOrDefault().PASSWORD;
+                    return RedirectToAction("SlideMenu", "Admin");
                 }
             }
+
             return View();
         }
         // GET: Register
@@ -57,15 +63,58 @@ namespace ProjectCinema.Controllers
                 UserDal dal = new UserDal();
                 dal.Users.Add(obj);
                 dal.SaveChanges();
-                return View("Login", obj);
+                return View("Login");
 
             }
-            return View("Register",obj);
-        }
-
-        public ActionResult Index()
-        {
             return View();
         }
+
+
+        // Post: /Account/ForgotPassword
+
+        [HttpGet]
+        public ActionResult ForgetPassWord(string dt)
+        {
+            using (UserDal dc = new UserDal())
+            {
+                var v = dc.Users.Where(a => a.USERNAME == dt).FirstOrDefault();
+                return View(v);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ForgetPassWord(User userT)
+        {
+            bool status = false;
+            if (ModelState.IsValid)
+            {
+                using (UserDal dc = new UserDal())
+                {
+                    if (userT.USERID != null)
+                    {
+                        //Edit 
+                        var v = dc.Users.Where(a => a.USERID == userT.USERID).FirstOrDefault();
+                        if (v != null)
+                        {
+                            v.PASSWORD = userT.PASSWORD;
+                            v.CONFIRMPASS = userT.CONFIRMPASS;
+
+                        }
+                    }
+                    else
+                    {
+                        //Save
+                        dc.Users.Add(userT);
+                    }
+                    dc.SaveChanges();
+                    status = true;
+                    return View("Login");
+
+                }
+            }
+            return new JsonResult { Data = new { status = status } };
+        }
+
+
     }
 }

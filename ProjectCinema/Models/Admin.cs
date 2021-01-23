@@ -11,7 +11,7 @@ namespace ProjectCinema.Models
     {
         [Key]
      
-        public string USERID { get; set; }
+        public string AdminID { get; set; }
 
         [Required(ErrorMessage = "Please Enter Role..")]
         [Display(Name = "Role")]

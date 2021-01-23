@@ -24,11 +24,14 @@ namespace ProjectCinema.Models
         public DateTime showtime { get; set; }
 
         [Required]
-        public string price { get; set; }
+        public int price { get; set; }
 
 
         [Required]
         public string SALLE { get; set; }
+
+        [Required]
+        public string ageLimitation { get; set; }
 
         [DataType(DataType.Upload)]
         [Display(Name = "Upload File")]

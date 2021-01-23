@@ -10,15 +10,18 @@ namespace ProjectCinema.Models
 	public class Tickets
 	{
         [Key]
-        public string ID { get; set; }
-        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+        [Required(ErrorMessage = "Please Enter Movie Name...")]
         public string MOVIENAME { get; set; }
-        [Required]       
+        [Required(ErrorMessage = "Please Enter Showtime...")]
         public DateTime SHOWTIME { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please Enter Seat...")]
         public string SEAT { get; set; }
-        [Required]
-        public string COST { get; set; }
+        [Required(ErrorMessage = "Please Enter Cost...")]
+        public int COST { get; set; }
+
+ 
 
     }
 }

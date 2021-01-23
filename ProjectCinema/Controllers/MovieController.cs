@@ -104,6 +104,7 @@ namespace ProjectCinema.Controllers
                             v.price = emp.price;
                             v.SALLE = emp.SALLE;
                             v.showtime = emp.showtime;
+                            v.ageLimitation = emp.ageLimitation;
                         }
                     }
                     else

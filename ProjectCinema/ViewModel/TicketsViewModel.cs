@@ -11,5 +11,14 @@ namespace ProjectCinema.ViewModel
     {
         public Tickets Tickets { get; set; }
         public List<Tickets> TicketsList { get; set; }
+
+        public List<Tickets> findAll()
+        {
+            return this.TicketsList;
+        }
+        public Tickets find(string id)
+        {
+            return this.TicketsList.Single(p => p.ID.Equals(id));
+        }
     }
 }
